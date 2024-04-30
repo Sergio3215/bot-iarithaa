@@ -84,10 +84,10 @@ client.on('messageCreate', async (msg) => {
                 { name: '!asignarrol', value: "se asignara un rol especificado a todos los usuarios. \nPor ejemplo: !asignarrol <'Name Role'>" },
                 { name: '!desasignarrol', value: "Puedes deseleccionar los roles a todos los usuarios.\nPor ejemplo: !desasignarrol <'Name Role'>" }
             ])
-            .setFooter({
-                iconURL: 'https://www.principianteenprogramar.com/static/Principiante-en-Programar.png',
-                text: "By Principiante en Programar",
-            })
+            // .setFooter({
+            //     iconURL: 'https://www.principianteenprogramar.com/static/Principiante-en-Programar.png',
+            //     text: "By Principiante en Programar",
+            // })
         await msg.reply({
             embeds: [embed]
         });
