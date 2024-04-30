@@ -3,6 +3,10 @@ require('dotenv').config();
 
 const token = process.env.token;
 
+const guildId = process.env.guildId,
+memberRol = process.env.memberRol,
+channelDailyMsg = process.env.channelDailyMsg;
+
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -31,20 +35,20 @@ client.on('ready', () => {
 
 //Send the message
 function sendMessage() {
-    let guild = client.guilds.cache.get('827342894713012224');
-    if (guild && guild.channels.cache.get('1092199027350720582')) {
+    let guild = client.guilds.cache.get(guildId);
+    if (guild && guild.channels.cache.get(channelDailyMsg)) {
 
         let date = new Date();
         // console.log(date.getHours())
         if (date.getHours() == 9 && date.getMinutes() == 0) {
-            guild.channels.cache.get('1092199027350720582').send(`
+            guild.channels.cache.get(channelDailyMsg).send(`
         ℍ𝕠𝕝𝕒 @everyone 𝕖𝕤𝕡𝕖𝕣𝕠 𝕢𝕦𝕖 𝕙𝕒𝕪𝕒𝕟
         𝕕𝕖𝕤𝕡𝕖𝕣𝕥𝕒𝕕𝕠 𝕔𝕠𝕟 𝕞𝕦𝕔𝕙𝕒 𝕖𝕟𝕖𝕣𝕘𝕚𝕒 𝕪 𝕢𝕦𝕖
         𝕥𝕖𝕟𝕘𝕒𝕟 𝕦𝕟 𝕝𝕚𝕟𝕕𝕠 𝕕𝕚𝕒!`);
 
         }
         else if (date.getHours() == 1 && date.getMinutes() == 0) {
-            guild.channels.cache.get('1092199027350720582').send(`
+            guild.channels.cache.get(channelDailyMsg).send(`
 ℍ𝕖𝕪 @everyone! 𝕐𝕒 𝕖𝕤 𝕙𝕠𝕣𝕒 𝕕𝕖 𝕞𝕚𝕞𝕚𝕣, 
 𝕖𝕤𝕡𝕖𝕣𝕠 𝕝𝕒 𝕙𝕒𝕪𝕒𝕟 𝕡𝕒𝕤𝕒𝕕𝕠 𝕞𝕦𝕪 𝕓𝕚𝕖𝕟, 
 𝕛𝕦𝕘𝕒𝕟𝕕𝕠. ℙ𝕖𝕣𝕠, 𝕪𝕒 𝕖𝕤 𝕥𝕒𝕣𝕕𝕖, 𝕒𝕤𝕚 𝕢𝕦𝕖 𝕧𝕒𝕪𝕒𝕟 𝕒𝕔𝕠𝕤𝕥𝕒𝕣𝕤𝕖, 
@@ -150,9 +154,7 @@ client.on('messageCreate', async (msg) => {
             let rolID = client.guilds.cache.get(msg.guild.id).roles.cache.filter(r => r.name == rolName).map(r => r.id);
             let members = await client.guilds.cache.get(msg.guild.id).members.fetch();
             let users = 0;
-            // console.log(rolName)
             members.forEach(member => {
-                // console.log(member)
                 member.roles.add(rolID);
                 users++;
             })
@@ -195,17 +197,8 @@ client.on('messageCreate', async (msg) => {
 client.on('guildMemberAdd', async (member) => {
     //    member.roles.add("1092199143902040144");
     // console.log(member)
-    if (member.guild.id == "827342894713012224") {
-        member.roles.add("1092199143902040144")
-        // console.log("se asigno un rol");
-    }
-    if (member.guild.id == "870465822504665168") {
-        member.roles.add("1152420240429416448")
-        member.roles.add("1152542252846030979")
-        // console.log("se asigno un rol");
-    }
-    if (member.guild.id == "870303406886109184") {
-        member.roles.add("871296543230160946")
+    if (member.guild.id == guildId) {
+        member.roles.add(memberRol);
         // console.log("se asigno un rol");
     }
 });
