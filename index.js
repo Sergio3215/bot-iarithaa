@@ -40,14 +40,14 @@ function sendMessage() {
 
         let date = new Date();
         // console.log(date.getHours())
-        if (date.getHours() == 9 && date.getMinutes() == 0) {
+        if (date.getHours() == 11 && date.getMinutes() == 0) {
             guild.channels.cache.get(channelDailyMsg).send(`
         ℍ𝕠𝕝𝕒 @everyone 𝕖𝕤𝕡𝕖𝕣𝕠 𝕢𝕦𝕖 𝕙𝕒𝕪𝕒𝕟
         𝕕𝕖𝕤𝕡𝕖𝕣𝕥𝕒𝕕𝕠 𝕔𝕠𝕟 𝕞𝕦𝕔𝕙𝕒 𝕖𝕟𝕖𝕣𝕘𝕚𝕒 𝕪 𝕢𝕦𝕖
         𝕥𝕖𝕟𝕘𝕒𝕟 𝕦𝕟 𝕝𝕚𝕟𝕕𝕠 𝕕𝕚𝕒!`);
 
         }
-        else if (date.getHours() == 1 && date.getMinutes() == 0) {
+        else if (date.getHours() == 3 && date.getMinutes() == 0) {
             guild.channels.cache.get(channelDailyMsg).send(`
 ℍ𝕖𝕪 @everyone! 𝕐𝕒 𝕖𝕤 𝕙𝕠𝕣𝕒 𝕕𝕖 𝕞𝕚𝕞𝕚𝕣, 
 𝕖𝕤𝕡𝕖𝕣𝕠 𝕝𝕒 𝕙𝕒𝕪𝕒𝕟 𝕡𝕒𝕤𝕒𝕕𝕠 𝕞𝕦𝕪 𝕓𝕚𝕖𝕟, 
