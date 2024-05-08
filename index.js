@@ -90,12 +90,10 @@ client.on('messageCreate', async (msg) => {
 
             // if (member.roles.cache.has('1234567496774844458'))
             //     console.log('member has the role')
-        console.log(admin, mod);
+            console.log(admin, mod);
+            ManagerRoles(client, msg, EmbedBuilder, Colors, admin, mod);
         })
         .catch(console.error);
-
-        console.log(admin, mod);
-        ManagerRoles(client, msg, EmbedBuilder, Colors, admin, mod)
 
 });
 client.on('guildMemberAdd', async (member) => {
