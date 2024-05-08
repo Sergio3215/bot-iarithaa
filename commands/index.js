@@ -10,15 +10,15 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     mod = moderation;
 
     let comandos_helper = [
-
+        { name: '!memide', value: "Dice la cantidad que te mide." }
     ];
 
     if(admin){
-        comandos_helper = commandsAdmin();
+        comandos_helper = commandsAdmin(comandos_helper);
     }
 
     if(mod){
-        comandos_helper = commandsAdmin();
+        comandos_helper = commandsAdmin(comandos_helper);
     }
 
 
@@ -35,14 +35,15 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         });
     }
 
+    if(msg.content == "!memide"){
+        _lowLevelCommand.memide(msg);
+    }
+
     if (admin) {
         ActionCustom(client, msg)
     }
     if (mod) {
         ActionCustom(client, msg)
-    }
-    else {
-        // _lowLevelCommand
     }
 }
 
@@ -51,14 +52,19 @@ module.exports ={
 }
 
 
-function commandsAdmin(){
-
-    return [
+function commandsAdmin(comandos_helper){
+    let commands = [
         { name: '!role', value: "Puedes seleccionar los roles a usuarios etiquetados.\nPor ejemplo: !role <'Name Role'>  <'name user'> <'name user'>.\nSe puede usar varios users" },
         { name: '!unrole', value: "Puedes deseleccionar los roles a usuarios etiquetados.\nPor ejemplo: !unrole <'Name Role'> <'name user'> <'name user'>.\nSe puede usar varios users" },
         { name: '!asignarrol', value: "se asignara un rol especificado a todos los usuarios. \nPor ejemplo: !asignarrol <'Name Role'>" },
         { name: '!desasignarrol', value: "Puedes deseleccionar los roles a todos los usuarios.\nPor ejemplo: !desasignarrol <'Name Role'>" }
-    ]
+    ];
+
+    comandos_helper.forEach(e => {
+        commands.push(e);
+    });
+
+    return commands;
 }
 
 function ActionCustom(client, msg){

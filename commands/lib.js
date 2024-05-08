@@ -118,6 +118,11 @@ class LowLevelCommand{
     constructor(){
         
     }
+
+    async memide(msg){
+        let cm =  Math.floor(Math.random());
+        msg.reply(`Te mide ${cm} cm`);
+    }
 }
 
 module.exports = {
