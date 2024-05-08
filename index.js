@@ -81,12 +81,12 @@ client.on('messageCreate', async (msg) => {
     let admin, mod;
 
     await guild.members.fetch(msg.author.id)
-        .then(member => {
+        .then(async (member) => {
             // member.roles.cache is a collection of roles the member has
             // console.log(member.roles.cache)
 
-            admin = member.roles.cache.has(process.env.rolAdmin);
-            mod = member.roles.cache.has(process.env.rolMod);
+            admin = await member.roles.cache.has(process.env.rolAdmin);
+            mod = await member.roles.cache.has(process.env.rolMod);
 
             // if (member.roles.cache.has('1234567496774844458'))
             //     console.log('member has the role')
