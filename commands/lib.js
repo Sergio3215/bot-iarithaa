@@ -281,7 +281,7 @@ class LowLevelCommand {
 
     async Abrazar(client, msg, EmbedBuilder, Colors) {
         try {
-            let perseguir = Math.floor(Math.random() * 3);
+            let perseguir = Math.floor(Math.random() * 2);
             if (perseguir == 0) {
                 perseguir = 1;
             }
