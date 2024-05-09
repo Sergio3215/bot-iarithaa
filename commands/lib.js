@@ -264,7 +264,7 @@ class LowLevelCommand {
             let reciverName = (reciver.nickname == null) ? reciver.user.globalName : reciver.nickname;
 
             const embed = new EmbedBuilder()
-                .setTitle(`${memberName} le beso a ${reciverName}`)
+                .setTitle(`${memberName} le dio un beso a ${reciverName}`)
                 // .setDescription("list of all commands")
                 .setColor(color)
                 .setImage(dir)
