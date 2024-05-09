@@ -74,26 +74,15 @@ client.on('messageCreate', async (msg) => {
     // console.log("----------------------------------------------------------------");
     // // console.log(client);
 
-    const guild = client.guilds.cache.get(msg.guild.id);
-    if (!guild)
-        return console.log(`Can't find the guild with ID ${msg.guild.id}`);
 
-    let admin, mod;
+    let admin = false, mod = false;
+    const guild = await client.guilds.cache.get(msg.guild.id);
 
-    await guild.members.fetch(msg.author.id)
-        .then(async (member) => {
-            // member.roles.cache is a collection of roles the member has
-            // console.log(member.roles.cache)
-
-            admin = await member.roles.cache.has(process.env.rolAdmin);
-            mod = await member.roles.cache.has(process.env.rolMod);
-
-            // if (member.roles.cache.has('1234567496774844458'))
-            //     console.log('member has the role')
-            // console.log(admin, mod);
-            ManagerRoles(client, msg, EmbedBuilder, Colors, admin, mod);
-        })
-        .catch(console.error);
+    let member = await guild.members.fetch(msg.author.id)
+    // console.log(admin, mod);
+    admin = await member.roles.cache.has(process.env.rolAdmin);
+    mod = await member.roles.cache.has(process.env.rolMod);
+    await ManagerRoles(client, msg, EmbedBuilder, Colors, admin, mod);
 
 });
 client.on('guildMemberAdd', async (member) => {

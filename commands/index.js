@@ -13,13 +13,17 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         { name: '!memide', value: "Dice la cantidad que te mide." }
     ];
 
+    let arrTemp = comandos_helper;
+
     if(admin){
-        comandos_helper = commandsAdmin(comandos_helper);
+        comandos_helper = commandsAdmin(arrTemp);
     }
 
     if(mod){
-        comandos_helper = commandsAdmin(comandos_helper);
+        comandos_helper = commandsAdmin(arrTemp);
     }
+
+    console.log(comandos_helper);
 
 
     if (msg.content === '!comandos') {
@@ -42,7 +46,7 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     if (admin) {
         ActionCustom(client, msg)
     }
-    if (mod) {
+    else if (mod) {
         ActionCustom(client, msg)
     }
 }
@@ -67,20 +71,22 @@ function commandsAdmin(comandos_helper){
     return commands;
 }
 
-function ActionCustom(client, msg){
-    if (msg.content == "!asignarrol") {
+async function ActionCustom(client, msg) {
+    let message = msg.content.trim().split(" ")[0];
+    console.log(message)
+    if (message == "!asignarrol") {
         _hightRole.asignarrol(client, msg);
     }
 
-    if (msg.content == "!desasignarrol") {
+    if (message == "!desasignarrol") {
         _hightRole.desasignarrol(client, msg);
     }
 
-    if (msg.content == "!role") {
-        _hightRole.role(client, msg);
+    if (message == "!role") {
+       await _hightRole.role(client, msg);
     }
 
-    if (msg.content == "!unrole") {
+    if (message == "!unrole") {
         _hightRole.unrole(client, msg);
     }
 }
