@@ -11,7 +11,9 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
 
     let comandos_helper = [
         { name: '!memide', value: "Dice la cantidad que te mide." },
-        { name: '!golpear', value: "Tu golpeas a alguien cuando lo etiquetas. Ejemplo !golpear <name>" }
+        { name: '!golpear', value: "Tu golpeas a alguien cuando lo etiquetas. Ejemplo !golpear <name>" },
+        { name: '!sonrojar', value: "Accion de sonrojarse" },
+        { name: '!perseguir', value: "Tu persigues a alguien cuando lo etiquetas. Ejemplo !golpear <name>" }
     ];
 
     let arrTemp = comandos_helper;
