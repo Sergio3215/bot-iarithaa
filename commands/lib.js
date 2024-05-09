@@ -243,6 +243,77 @@ class LowLevelCommand {
             embeds: [embed]
         });
     }
+    
+    async Besar(client, msg, EmbedBuilder, Colors) {
+        try {
+            let perseguir = Math.floor(Math.random() * 3);
+            if (perseguir == 0) {
+                perseguir = 1;
+            }
+            let dir = `https://raw.githubusercontent.com/Sergio3215/bot-iarithaa/main/static/besar/${perseguir}.gif`;
+
+            const guild = await client.guilds.cache.get(msg.guild.id);
+            let member = await guild.members.fetch(msg.author.id);
+
+            let reciverID = msg.content.split('<@')[1].split('>')[0];
+            let reciver = await guild.members.fetch(reciverID);
+
+            let color = this.#ColorRandom(Colors);
+
+            let memberName = (member.nickname == null) ? msg.author.globalName : member.nickname;
+            let reciverName = (reciver.nickname == null) ? reciver.user.globalName : reciver.nickname;
+
+            const embed = new EmbedBuilder()
+                .setTitle(`${memberName} le beso a ${reciverName}`)
+                // .setDescription("list of all commands")
+                .setColor(color)
+                .setImage(dir)
+            // .addFields(
+            //     comandos_helper
+            // )
+            await msg.reply({
+                embeds: [embed]
+            });
+        } catch (error) {
+            await msg.reply("Necesitas etiquetar a un amigo o usuario del servidor");
+        }
+    }
+
+    async Abrazar(client, msg, EmbedBuilder, Colors) {
+        try {
+            let perseguir = Math.floor(Math.random() * 3);
+            if (perseguir == 0) {
+                perseguir = 1;
+            }
+            let dir = `https://raw.githubusercontent.com/Sergio3215/bot-iarithaa/main/static/abrazo/${perseguir}.gif`;
+
+            const guild = await client.guilds.cache.get(msg.guild.id);
+            let member = await guild.members.fetch(msg.author.id);
+
+            let reciverID = msg.content.split('<@')[1].split('>')[0];
+            let reciver = await guild.members.fetch(reciverID);
+
+            let color = this.#ColorRandom(Colors);
+
+            let memberName = (member.nickname == null) ? msg.author.globalName : member.nickname;
+            let reciverName = (reciver.nickname == null) ? reciver.user.globalName : reciver.nickname;
+
+            const embed = new EmbedBuilder()
+                .setTitle(`${memberName} le abrazó a ${reciverName}`)
+                // .setDescription("list of all commands")
+                .setColor(color)
+                .setImage(dir)
+            // .addFields(
+            //     comandos_helper
+            // )
+            await msg.reply({
+                embeds: [embed]
+            });
+        } catch (error) {
+            await msg.reply("Necesitas etiquetar a un amigo o usuario del servidor");
+        }
+    }
+
 }
 
 module.exports = {
