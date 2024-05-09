@@ -10,7 +10,8 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     mod = moderation;
 
     let comandos_helper = [
-        { name: '!memide', value: "Dice la cantidad que te mide." }
+        { name: '!memide', value: "Dice la cantidad que te mide." },
+        { name: '!golpear', value: "Tu golpeas a alguien cuando lo etiquetas. Ejemplo !golpear <name>" }
     ];
 
     let arrTemp = comandos_helper;
@@ -22,8 +23,6 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     if(mod){
         comandos_helper = commandsAdmin(arrTemp);
     }
-
-    console.log(comandos_helper);
 
 
     if (msg.content === '!comandos') {
@@ -41,6 +40,10 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
 
     if(msg.content == "!memide"){
         _lowLevelCommand.memide(msg);
+    }
+    
+    if(msg.content.includes("!golpear")){
+        _lowLevelCommand.golpear(client, msg, EmbedBuilder, Colors);
     }
 
     if (admin) {
@@ -73,7 +76,6 @@ function commandsAdmin(comandos_helper){
 
 async function ActionCustom(client, msg) {
     let message = msg.content.trim().split(" ")[0];
-    console.log(message)
     if (message == "!asignarrol") {
         _hightRole.asignarrol(client, msg);
     }

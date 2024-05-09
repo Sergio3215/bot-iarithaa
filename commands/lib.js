@@ -89,7 +89,7 @@ class HightLevelCommand {
         }
     }
 
-    async desasignarrol(client, msg){
+    async desasignarrol(client, msg) {
         try {
             let rolName = msg.content.split("!desasignarrol ")[1].trim();
             let rolID = client.guilds.cache.get(msg.guild.id).roles.cache.filter(r => r.name == rolName).map(r => r.id);
@@ -114,14 +114,72 @@ class HightLevelCommand {
     }
 }
 
-class LowLevelCommand{
-    constructor(){
-        
+class LowLevelCommand {
+    constructor() {
+
     }
 
-    async memide(msg){
-        let cm =  Math.floor(Math.random()*30);
+    #colorRandom(Colors) {
+        let num = Math.floor(Math.random() * 4);
+
+        if (num == 0) {
+            num = 1;
+        }
+
+        switch (num) {
+            case 1:
+                return Colors.Red;
+                break;
+            case 2:
+                return Colors.Green;
+                break;
+            case 3:
+                return Colors.Blue;
+                break;
+            case 4:
+                return Colors.Black;
+                break;
+        }
+    }
+
+    async memide(msg) {
+        let cm = Math.floor(Math.random() * 30);
         msg.reply(`Te mide ${cm} cm`);
+    }
+
+    async golpear(client, msg, EmbedBuilder, Colors) {
+        try {
+            let golpe = Math.floor(Math.random() * 6);
+            if (golpe == 0) {
+                golpe = 1;
+            }
+            let dir = `https://github.com/Sergio3215/bot-iarithaa/blob/main/static/${golpe}.gif`;
+
+            const guild = await client.guilds.cache.get(msg.guild.id);
+            let member = await guild.members.fetch(msg.author.id);
+
+            let reciverID = msg.content.split('<@')[1].split('>')[0];
+            let reciver = await guild.members.fetch(reciverID);
+
+            let color = this.#colorRandom(Colors);
+
+            let memberName = (member.nickname == null) ? msg.author.globalName : member.nickname;
+            let reciverName = (reciver.nickname == null) ? reciver.user.globalName : reciver.nickname;
+
+            const embed = new EmbedBuilder()
+                .setTitle(`${memberName} le ha dado un golpe a ${reciverName}`)
+                // .setDescription("list of all commands")
+                .setColor(color)
+                .setImage(dir)
+            // .addFields(
+            //     comandos_helper
+            // )
+            await msg.reply({
+                embeds: [embed]
+            });
+        } catch (error) {
+            await msg.reply("Necesitas etiquetar a un amigo o usuario del servidor");
+        }
     }
 }
 
