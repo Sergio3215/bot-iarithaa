@@ -50,7 +50,7 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         _lowLevelCommand.Sonrojar(client, msg, EmbedBuilder, Colors);
     }
     
-    if(msg.content.includes("!persiguiendo")){
+    if(msg.content.includes("!perseguir")){
         _lowLevelCommand.Perseguir(client, msg, EmbedBuilder, Colors);
     }
 
