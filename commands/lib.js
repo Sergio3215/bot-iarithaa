@@ -153,7 +153,7 @@ class LowLevelCommand {
             if (golpe == 0) {
                 golpe = 1;
             }
-            let dir = `https://github.com/Sergio3215/bot-iarithaa/blob/main/static/golpe/${golpe}.gif`;
+            let dir = `https://raw.githubusercontent.com/Sergio3215/bot-iarithaa/main/static/golpe/${golpe}.gif`;
 
             const guild = await client.guilds.cache.get(msg.guild.id);
             let member = await guild.members.fetch(msg.author.id);
