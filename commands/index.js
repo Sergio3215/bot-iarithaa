@@ -39,11 +39,19 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     }
 
     if(msg.content == "!memide"){
-        _lowLevelCommand.memide(msg);
+        _lowLevelCommand.MeMide(msg);
     }
     
     if(msg.content.includes("!golpear")){
-        _lowLevelCommand.golpear(client, msg, EmbedBuilder, Colors);
+        _lowLevelCommand.Golpear(client, msg, EmbedBuilder, Colors);
+    }
+    
+    if(msg.content.includes("!sonrojar")){
+        _lowLevelCommand.Sonrojar(client, msg, EmbedBuilder, Colors);
+    }
+    
+    if(msg.content.includes("!persiguiendo")){
+        _lowLevelCommand.Perseguir(client, msg, EmbedBuilder, Colors);
     }
 
     if (admin) {
@@ -77,19 +85,19 @@ function commandsAdmin(comandos_helper){
 async function ActionCustom(client, msg) {
     let message = msg.content.trim().split(" ")[0];
     if (message == "!asignarrol") {
-        _hightRole.asignarrol(client, msg);
+        _hightRole.AsignarRol(client, msg);
     }
 
     if (message == "!desasignarrol") {
-        _hightRole.desasignarrol(client, msg);
+        _hightRole.DesasignarRol(client, msg);
     }
 
     if (message == "!role") {
-       await _hightRole.role(client, msg);
+       await _hightRole.Role(client, msg);
     }
 
     if (message == "!unrole") {
-        _hightRole.unrole(client, msg);
+        _hightRole.Unrole(client, msg);
     }
 }
 

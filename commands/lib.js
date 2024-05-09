@@ -3,7 +3,7 @@ class HightLevelCommand {
 
     }
 
-    async asignarrol(client, msg) {
+    async AsignarRol(client, msg) {
         try {
             let rolName = msg.content.split("!asignarrol ")[1].trim();
             let rolID = client.guilds.cache.get(msg.guild.id).roles.cache.filter(r => r.name == rolName).map(r => r.id);
@@ -27,7 +27,7 @@ class HightLevelCommand {
         }
     }
 
-    async role(client, msg) {
+    async Role(client, msg) {
         let message = msg.content;
         let users;
         let rol = "";
@@ -59,7 +59,7 @@ class HightLevelCommand {
         }
     }
 
-    async unrole(client, msg) {
+    async Unrole(client, msg) {
         let message = msg.content;
         let users;
         let rol = "";
@@ -89,7 +89,7 @@ class HightLevelCommand {
         }
     }
 
-    async desasignarrol(client, msg) {
+    async DesasignarRol(client, msg) {
         try {
             let rolName = msg.content.split("!desasignarrol ")[1].trim();
             let rolID = client.guilds.cache.get(msg.guild.id).roles.cache.filter(r => r.name == rolName).map(r => r.id);
@@ -119,7 +119,7 @@ class LowLevelCommand {
 
     }
 
-    #colorRandom(Colors) {
+    #ColorRandom(Colors) {
         let num = Math.floor(Math.random() * 4);
 
         if (num == 0) {
@@ -142,12 +142,12 @@ class LowLevelCommand {
         }
     }
 
-    async memide(msg) {
+    async MeMide(msg) {
         let cm = Math.floor(Math.random() * 30);
         msg.reply(`Te mide ${cm} cm`);
     }
 
-    async golpear(client, msg, EmbedBuilder, Colors) {
+    async Golpear(client, msg, EmbedBuilder, Colors) {
         try {
             let golpe = Math.floor(Math.random() * 6);
             if (golpe == 0) {
@@ -161,7 +161,7 @@ class LowLevelCommand {
             let reciverID = msg.content.split('<@')[1].split('>')[0];
             let reciver = await guild.members.fetch(reciverID);
 
-            let color = this.#colorRandom(Colors);
+            let color = this.#ColorRandom(Colors);
 
             let memberName = (member.nickname == null) ? msg.author.globalName : member.nickname;
             let reciverName = (reciver.nickname == null) ? reciver.user.globalName : reciver.nickname;
@@ -180,6 +180,68 @@ class LowLevelCommand {
         } catch (error) {
             await msg.reply("Necesitas etiquetar a un amigo o usuario del servidor");
         }
+    }
+
+    async Perseguir(client, msg, EmbedBuilder, Colors) {
+        try {
+            let perseguir = Math.floor(Math.random() * 3);
+            if (perseguir == 0) {
+                perseguir = 1;
+            }
+            let dir = `https://raw.githubusercontent.com/Sergio3215/bot-iarithaa/main/static/perseguir/${perseguir}.gif`;
+
+            const guild = await client.guilds.cache.get(msg.guild.id);
+            let member = await guild.members.fetch(msg.author.id);
+
+            let reciverID = msg.content.split('<@')[1].split('>')[0];
+            let reciver = await guild.members.fetch(reciverID);
+
+            let color = this.#ColorRandom(Colors);
+
+            let memberName = (member.nickname == null) ? msg.author.globalName : member.nickname;
+            let reciverName = (reciver.nickname == null) ? reciver.user.globalName : reciver.nickname;
+
+            const embed = new EmbedBuilder()
+                .setTitle(`${memberName} le esta persiguiendo a ${reciverName}`)
+                // .setDescription("list of all commands")
+                .setColor(color)
+                .setImage(dir)
+            // .addFields(
+            //     comandos_helper
+            // )
+            await msg.reply({
+                embeds: [embed]
+            });
+        } catch (error) {
+            await msg.reply("Necesitas etiquetar a un amigo o usuario del servidor");
+        }
+    }
+
+    async Sonrojar(client, msg, EmbedBuilder, Colors) {
+        let sonrojar = Math.floor(Math.random() * 6);
+        if (sonrojar == 0) {
+            sonrojar = 1;
+        }
+        let dir = `https://raw.githubusercontent.com/Sergio3215/bot-iarithaa/main/static/sonrojar/${1}.gif`;
+
+        const guild = await client.guilds.cache.get(msg.guild.id);
+        let member = await guild.members.fetch(msg.author.id);
+
+        let color = this.#ColorRandom(Colors);
+
+        let memberName = (member.nickname == null) ? msg.author.globalName : member.nickname;
+
+        const embed = new EmbedBuilder()
+            .setTitle(`${memberName} se ha sonrojado`)
+            // .setDescription("list of all commands")
+            .setColor(color)
+            .setImage(dir)
+        // .addFields(
+        //     comandos_helper
+        // )
+        await msg.reply({
+            embeds: [embed]
+        });
     }
 }
 
