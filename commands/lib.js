@@ -149,7 +149,7 @@ class LowLevelCommand {
 
     async Golpear(client, msg, EmbedBuilder, Colors) {
         try {
-            let golpe = Math.floor(Math.random() * 6);
+            let golpe = Math.floor(Math.random() * 7);
             if (golpe == 0) {
                 golpe = 1;
             }
@@ -184,7 +184,7 @@ class LowLevelCommand {
 
     async Perseguir(client, msg, EmbedBuilder, Colors) {
         try {
-            let perseguir = Math.floor(Math.random() * 3);
+            let perseguir = Math.floor(Math.random() * 4);
             if (perseguir == 0) {
                 perseguir = 1;
             }
@@ -218,7 +218,7 @@ class LowLevelCommand {
     }
 
     async Sonrojar(client, msg, EmbedBuilder, Colors) {
-        let sonrojar = Math.floor(Math.random() * 6);
+        let sonrojar = Math.floor(Math.random() * 9);
         if (sonrojar == 0) {
             sonrojar = 1;
         }
@@ -246,7 +246,7 @@ class LowLevelCommand {
     
     async Besar(client, msg, EmbedBuilder, Colors) {
         try {
-            let perseguir = Math.floor(Math.random() * 3);
+            let perseguir = Math.floor(Math.random() * 9);
             if (perseguir == 0) {
                 perseguir = 1;
             }
@@ -281,7 +281,7 @@ class LowLevelCommand {
 
     async Abrazar(client, msg, EmbedBuilder, Colors) {
         try {
-            let perseguir = Math.floor(Math.random() * 2);
+            let perseguir = Math.floor(Math.random() * 7);
             if (perseguir == 0) {
                 perseguir = 1;
             }
