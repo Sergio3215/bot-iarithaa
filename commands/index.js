@@ -15,7 +15,8 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         { name: '!sonrojar', value: "Accion de sonrojarse" },
         { name: '!perseguir', value: "Tu persigues a alguien cuando lo etiquetas. Ejemplo !perseguir <name>" },
         { name: '!besar', value: "Tu besas a alguien cuando lo etiquetas. Ejemplo !besar <name>" },
-        { name: '!abrazar', value: "Tu abrazas a alguien cuando lo etiquetas. Ejemplo !abrazar <name>" }
+        { name: '!abrazar', value: "Tu abrazas a alguien cuando lo etiquetas. Ejemplo !abrazar <name>" },
+        { name: '!pareja', value: "Te dice que pareja vas a tener :D" }
     ];
 
     let arrTemp = comandos_helper;
@@ -64,6 +65,10 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
 
     if(msg.content.includes("!abrazar")){
         _lowLevelCommand.Abrazar(client, msg, EmbedBuilder, Colors);
+    }
+
+    if(msg.content.includes("!pareja")){
+        _lowLevelCommand.Pareja(client, msg, EmbedBuilder, Colors);
     }
 
     if (admin) {

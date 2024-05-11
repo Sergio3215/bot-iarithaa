@@ -243,7 +243,7 @@ class LowLevelCommand {
             embeds: [embed]
         });
     }
-    
+
     async Besar(client, msg, EmbedBuilder, Colors) {
         try {
             let perseguir = Math.floor(Math.random() * 9);
@@ -312,6 +312,63 @@ class LowLevelCommand {
         } catch (error) {
             await msg.reply("Necesitas etiquetar a un amigo o usuario del servidor");
         }
+    }
+
+    async Pareja(client, msg, EmbedBuilder, Colors) {
+        try {
+        let memberOne = await this.#PersonaRandom(client, msg);
+        // console.log(memberOne)
+        
+        let beso = Math.floor(Math.random() * 7);
+        if (beso == 0) {
+            beso = 1;
+        }
+        let dir = `https://raw.githubusercontent.com/Sergio3215/bot-iarithaa/main/static/besar/${beso}.gif`;
+
+        const guild = await client.guilds.cache.get(msg.guild.id);
+        let member = await guild.members.fetch(msg.author.id);
+
+        let reciverID = memberOne.user.id;
+        let reciver = await guild.members.fetch(reciverID);
+
+        let color = this.#ColorRandom(Colors);
+
+        let memberName = (member.nickname == null) ? msg.author.globalName : member.nickname;
+        let reciverName = (reciver.nickname == null) ? reciver.user.globalName : reciver.nickname;
+
+        const embed = new EmbedBuilder()
+            .setTitle(`La pareja de ${memberName} es ${reciverName}`)
+            // .setDescription("list of all commands")
+            .setColor(color)
+            .setImage(dir)
+        // .addFields(
+        //     comandos_helper
+        // )
+        await msg.reply({
+            embeds: [embed]
+        });
+        
+        // msg.reply(`<@${memberOne.user.id}>`);
+        } catch (error) {
+            await msg.reply("Necesitas etiquetar a un amigo o usuario del servidor");
+        }
+    }
+
+    async #PersonaRandom(client, msg) {
+        const guild = await client.guilds.cache.get(msg.guild.id);
+        let member = await guild.members.fetch();
+        // console.log(member);
+        let tempArr = [];
+        member.map(m => {
+            tempArr.push(m);
+        })
+
+        let oneMember = Math.floor(Math.random() * tempArr.length);
+
+        // console.log(tempArr[oneMember].nickname);
+        // console.log(tempArr[oneMember].user.globalName);
+
+        return tempArr[oneMember]
     }
 
 }
