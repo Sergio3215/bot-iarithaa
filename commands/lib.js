@@ -222,7 +222,7 @@ class LowLevelCommand {
         if (sonrojar == 0) {
             sonrojar = 1;
         }
-        let dir = `https://raw.githubusercontent.com/Sergio3215/bot-iarithaa/main/static/sonrojar/${1}.gif`;
+        let dir = `https://raw.githubusercontent.com/Sergio3215/bot-iarithaa/main/static/sonrojar/${sonrojar}.gif`;
 
         const guild = await client.guilds.cache.get(msg.guild.id);
         let member = await guild.members.fetch(msg.author.id);
