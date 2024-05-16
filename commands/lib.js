@@ -316,39 +316,43 @@ class LowLevelCommand {
 
     async Pareja(client, msg, EmbedBuilder, Colors) {
         try {
-        let memberOne = await this.#PersonaRandom(client, msg);
-        // console.log(memberOne)
-        
-        let beso = Math.floor(Math.random() * 7);
-        if (beso == 0) {
-            beso = 1;
-        }
-        let dir = `https://raw.githubusercontent.com/Sergio3215/bot-iarithaa/main/static/besar/${beso}.gif`;
+            let memberOne = await this.#PersonaRandom(client, msg);
+            // console.log(memberOne)
 
-        const guild = await client.guilds.cache.get(msg.guild.id);
-        let member = await guild.members.fetch(msg.author.id);
+            let beso = Math.floor(Math.random() * 7);
+            if (beso == 0) {
+                beso = 1;
+            }
+            let dir = `https://raw.githubusercontent.com/Sergio3215/bot-iarithaa/main/static/besar/${beso}.gif`;
 
-        let reciverID = memberOne.user.id;
-        let reciver = await guild.members.fetch(reciverID);
+            const guild = await client.guilds.cache.get(msg.guild.id);
+            let member = await guild.members.fetch(msg.author.id);
 
-        let color = this.#ColorRandom(Colors);
+            let reciverID = memberOne.user.id;
+            let reciver = await guild.members.fetch(reciverID);
 
-        let memberName = (member.nickname == null) ? msg.author.globalName : member.nickname;
-        let reciverName = (reciver.nickname == null) ? reciver.user.globalName : reciver.nickname;
+            let color = this.#ColorRandom(Colors);
 
-        const embed = new EmbedBuilder()
-            .setTitle(`La pareja de ${memberName} es ${reciverName}`)
-            // .setDescription("list of all commands")
-            .setColor(color)
-            .setImage(dir)
-        // .addFields(
-        //     comandos_helper
-        // )
-        await msg.reply({
-            embeds: [embed]
-        });
-        
-        // msg.reply(`<@${memberOne.user.id}>`);
+            let memberName = (member.nickname == null) ? msg.author.globalName : member.nickname;
+            let reciverName = (reciver.nickname == null) ? reciver.user.globalName : reciver.nickname;
+
+            if (reciverName == "null") {
+                return this.Pareja(client, msg, EmbedBuilder, Colors);
+            }
+
+            const embed = new EmbedBuilder()
+                .setTitle(`La pareja de ${memberName} es ${reciverName}`)
+                // .setDescription("list of all commands")
+                .setColor(color)
+                .setImage(dir)
+            // .addFields(
+            //     comandos_helper
+            // )
+            await msg.reply({
+                embeds: [embed]
+            });
+
+            // msg.reply(`<@${memberOne.user.id}>`);
         } catch (error) {
             await msg.reply("Necesitas etiquetar a un amigo o usuario del servidor");
         }

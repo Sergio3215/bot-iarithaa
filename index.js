@@ -74,16 +74,18 @@ client.on('messageCreate', async (msg) => {
     // console.log("----------------------------------------------------------------");
     // // console.log(client);
 
+    //ID Auttaja:  1240443884576706570
 
-    let admin = false, mod = false;
-    const guild = await client.guilds.cache.get(msg.guild.id);
+    if (msg.author.id != 1240443884576706570) {
+        let admin = false, mod = false;
+        const guild = await client.guilds.cache.get(msg.guild.id);
 
-    let member = await guild.members.fetch(msg.author.id)
-    // console.log(admin, mod);
-    admin = await member.roles.cache.has(process.env.rolAdmin);
-    mod = await member.roles.cache.has(process.env.rolMod);
-    await ManagerRoles(client, msg, EmbedBuilder, Colors, admin, mod);
-
+        let member = await guild.members.fetch(msg.author.id)
+        // console.log(admin, mod);
+        admin = await member.roles.cache.has(process.env.rolAdmin);
+        mod = await member.roles.cache.has(process.env.rolMod);
+        await ManagerRoles(client, msg, EmbedBuilder, Colors, admin, mod);
+    }
 });
 client.on('guildMemberAdd', async (member) => {
     //    member.roles.add("1092199143902040144");

@@ -43,31 +43,31 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         });
     }
 
-    if(msg.content == "!memide"){
+    if(msg.content.toLowerCase() == "!memide"){
         _lowLevelCommand.MeMide(msg);
     }
     
-    if(msg.content.includes("!golpear")){
+    if(msg.content.toLowerCase().includes("!golpear")){
         _lowLevelCommand.Golpear(client, msg, EmbedBuilder, Colors);
     }
     
-    if(msg.content.includes("!sonrojar")){
+    if(msg.content.toLowerCase().includes("!sonrojar")){
         _lowLevelCommand.Sonrojar(client, msg, EmbedBuilder, Colors);
     }
     
-    if(msg.content.includes("!perseguir")){
+    if(msg.content.toLowerCase().includes("!perseguir")){
         _lowLevelCommand.Perseguir(client, msg, EmbedBuilder, Colors);
     }
     
-    if(msg.content.includes("!besar")){
+    if(msg.content.toLowerCase().includes("!besar")){
         _lowLevelCommand.Besar(client, msg, EmbedBuilder, Colors);
     }
 
-    if(msg.content.includes("!abrazar")){
+    if(msg.content.toLowerCase().includes("!abrazar")){
         _lowLevelCommand.Abrazar(client, msg, EmbedBuilder, Colors);
     }
 
-    if(msg.content.includes("!pareja")){
+    if(msg.content.toLowerCase().includes("!pareja")){
         _lowLevelCommand.Pareja(client, msg, EmbedBuilder, Colors);
     }
 
@@ -101,19 +101,19 @@ function commandsAdmin(comandos_helper){
 
 async function ActionCustom(client, msg) {
     let message = msg.content.trim().split(" ")[0];
-    if (message == "!asignarrol") {
+    if (message.toLowerCase() == "!asignarrol") {
         _hightRole.AsignarRol(client, msg);
     }
 
-    if (message == "!desasignarrol") {
+    if (message.toLowerCase() == "!desasignarrol") {
         _hightRole.DesasignarRol(client, msg);
     }
 
-    if (message == "!role") {
+    if (message.toLowerCase() == "!role") {
        await _hightRole.Role(client, msg);
     }
 
-    if (message == "!unrole") {
+    if (message.toLowerCase() == "!unrole") {
         _hightRole.Unrole(client, msg);
     }
 }
