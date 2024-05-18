@@ -76,7 +76,7 @@ client.on('messageCreate', async (msg) => {
 
     //ID Auttaja:  1240443884576706570
 
-    if (msg.author.id != 1240443884576706570) {
+    try{
         let admin = false, mod = false;
         const guild = await client.guilds.cache.get(msg.guild.id);
 
@@ -85,6 +85,9 @@ client.on('messageCreate', async (msg) => {
         admin = await member.roles.cache.has(process.env.rolAdmin);
         mod = await member.roles.cache.has(process.env.rolMod);
         await ManagerRoles(client, msg, EmbedBuilder, Colors, admin, mod);
+    }
+    catch(ex){
+
     }
 });
 client.on('guildMemberAdd', async (member) => {
