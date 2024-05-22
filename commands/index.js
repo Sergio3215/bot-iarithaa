@@ -6,7 +6,7 @@ const _lowLevelCommand = new LowLevelCommand();
 const _profile = new Profile();
 
 
-async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, moderation) {
+async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, moderation, helper) {
 
     try {
 
@@ -18,14 +18,15 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         if (user.length == 0 && msg.author.id != "1234739925266600019") {
             _profile.Create(msg, member);
         }
- 
+
     }
     catch (error) {
         console.log(error);
     }
 
     let admin = administrator,
-        mod = moderation;
+        mod = moderation,
+        help = helper;
 
     let comandos_helper = [
         { name: '!memide', value: "Dice la cantidad que te mide." },
@@ -34,7 +35,10 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         { name: '!perseguir', value: "Tu persigues a alguien cuando lo etiquetas. Ejemplo !perseguir <name>" },
         { name: '!besar', value: "Tu besas a alguien cuando lo etiquetas. Ejemplo !besar <name>" },
         { name: '!abrazar', value: "Tu abrazas a alguien cuando lo etiquetas. Ejemplo !abrazar <name>" },
-        { name: '!pareja', value: "Te dice que pareja vas a tener :D" }
+        { name: '!pareja', value: "Te dice que pareja vas a tener :D" },
+        { name: '!perfil', value: "Puedes ver tu propio perfil, o ver el perfil de alguien \nPor ejemplo: !perfil <name> o !perfil" },
+        { name: '!riot add', value: "Agregas un id de Riot (Podes tener varios). \nPor ejemplo: !riot add <name>" },
+        { name: '!riot remove', value: "Borras un id de Riot.\nPor ejemplo: !riot remove <name>" }
     ];
 
     let arrTemp = comandos_helper;
@@ -47,11 +51,15 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         comandos_helper = commandsAdmin(arrTemp);
     }
 
+    if (help) {
+        comandos_helper = commandsAdmin(arrTemp);
+    }
+
 
     if (msg.content === '!comandos') {
         const embed = new EmbedBuilder()
             .setTitle("Lista de Comandos")
-            .setDescription("list of all commands")
+            // .setDescription("list of all commands")
             .setColor(Colors.Red)
             .addFields(
                 comandos_helper
@@ -103,6 +111,9 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     else if (mod) {
         ActionCustom(client, msg)
     }
+    else if (help) {
+        ActionCustom(client, msg)
+    }
 }
 
 module.exports = {
@@ -112,10 +123,16 @@ module.exports = {
 
 function commandsAdmin(comandos_helper) {
     let commands = [
+        { name: ' ', value: "-----------------------------" },
+        { name: 'Comando de Admin / Mod', value: " " },
+        { name: ' ', value: "-----------------------------" },
         { name: '!role', value: "Puedes seleccionar los roles a usuarios etiquetados.\nPor ejemplo: !role <'Name Role'>  <'name user'> <'name user'>.\nSe puede usar varios users" },
         { name: '!unrole', value: "Puedes deseleccionar los roles a usuarios etiquetados.\nPor ejemplo: !unrole <'Name Role'> <'name user'> <'name user'>.\nSe puede usar varios users" },
         { name: '!asignarrol', value: "se asignara un rol especificado a todos los usuarios. \nPor ejemplo: !asignarrol <'Name Role'>" },
-        { name: '!desasignarrol', value: "Puedes deseleccionar los roles a todos los usuarios.\nPor ejemplo: !desasignarrol <'Name Role'>" }
+        { name: '!desasignarrol', value: "Puedes deseleccionar los roles a todos los usuarios.\nPor ejemplo: !desasignarrol <'Name Role'>" },
+        { name: ' ', value: "-----------------------------" },
+        { name: 'Comando de Normal', value: " " },
+        { name: ' ', value: "-----------------------------" },
     ];
 
     comandos_helper.forEach(e => {
