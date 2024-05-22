@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String
+  userGlobalName String
+  userNickName   String?
+  duo            String?
+  pareja         String?
+  messageCount   Int?
+  steamId       String?
+  epicId         String?
+  minecraftName  String?
+}
+
+model MinecraftInfoServer {
+  id                  String  @id @default(auto()) @map("_id") @db.ObjectId
+  MinecraftInfoServer String?
+}
+
+model Riot {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  riotID String
+  userID String
+}

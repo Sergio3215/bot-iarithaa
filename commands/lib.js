@@ -1,3 +1,10 @@
+const { valueToNode } = require('../../../propio/yourSecret/react_modules/babel.js');
+const { Profile, Riot } = require('../db/query.js');
+const { Client, GatewayIntentBits, EmbedBuilder, Colors } = require('discord.js');
+
+const _profile = new Profile();
+const _riot = new Riot();
+
 class HightLevelCommand {
     constructor() {
 
@@ -147,7 +154,7 @@ class LowLevelCommand {
         msg.reply(`Te mide ${cm} cm`);
     }
 
-    async Golpear(client, msg, EmbedBuilder, Colors) {
+    async Golpear(client, msg) {
         try {
             let golpe = Math.floor(Math.random() * 7);
             if (golpe == 0) {
@@ -182,7 +189,7 @@ class LowLevelCommand {
         }
     }
 
-    async Perseguir(client, msg, EmbedBuilder, Colors) {
+    async Perseguir(client, msg) {
         try {
             let perseguir = Math.floor(Math.random() * 4);
             if (perseguir == 0) {
@@ -217,7 +224,7 @@ class LowLevelCommand {
         }
     }
 
-    async Sonrojar(client, msg, EmbedBuilder, Colors) {
+    async Sonrojar(client, msg) {
         let sonrojar = Math.floor(Math.random() * 9);
         if (sonrojar == 0) {
             sonrojar = 1;
@@ -244,7 +251,7 @@ class LowLevelCommand {
         });
     }
 
-    async Besar(client, msg, EmbedBuilder, Colors) {
+    async Besar(client, msg) {
         try {
             let perseguir = Math.floor(Math.random() * 9);
             if (perseguir == 0) {
@@ -279,7 +286,7 @@ class LowLevelCommand {
         }
     }
 
-    async Abrazar(client, msg, EmbedBuilder, Colors) {
+    async Abrazar(client, msg) {
         try {
             let perseguir = Math.floor(Math.random() * 7);
             if (perseguir == 0) {
@@ -314,7 +321,7 @@ class LowLevelCommand {
         }
     }
 
-    async Pareja(client, msg, EmbedBuilder, Colors) {
+    async Pareja(client, msg) {
         try {
             let memberOne = await this.#PersonaRandom(client, msg);
             // console.log(memberOne)
@@ -353,6 +360,119 @@ class LowLevelCommand {
             });
 
             // msg.reply(`<@${memberOne.user.id}>`);
+        } catch (error) {
+            await msg.reply("Necesitas etiquetar a un amigo o usuario del servidor");
+        }
+    }
+
+    async RiotID(msg) {
+        try {
+            let memberID = msg.author.id;
+
+            if (msg.content.toLowerCase().includes("add")) {
+                memberID = msg.content.split("add")[1].trim();
+                _riot.Create(msg, memberID);
+
+                await msg.reply({
+                    content: `Se ha agregado la cuenta de Riot exitosamente`
+                });
+            }
+            else if (msg.content.toLowerCase().includes("remove")) {
+                memberID = msg.content.split("remove")[1].trim();
+                let user = await _riot.GetById(msg.author.id);
+                let user_id = user.filter(us => us.riotID == memberID);
+                _riot.Remove(user_id);
+                await msg.reply({
+                    content: `Se ha removido la cuenta de Riot exitosamente`
+                });
+            }
+            else {
+                await msg.reply({
+                    content: `No se ha utilizado bien el comando`
+                });
+            }
+
+        } catch (error) {
+            await msg.reply("Necesitas poner un id de Riot");
+        }
+    }
+
+    async Perfil(client, msg) {
+        try {
+
+            let color = this.#ColorRandom(Colors);
+            let id = msg.author.id;
+            const guild = await client.guilds.cache.get(msg.guild.id);
+
+            if (msg.content.includes("<@") && msg.content.includes(">")) {
+                id = msg.content.split('<@')[1].split('>')[0];
+            }
+
+            let member = await _profile.GetById(id);
+            let memberGuild = await guild.members.fetch(id);
+            let riot = await _riot.GetById(id);
+
+            if (member.length == 0) {
+                member = memberGuild;
+            }
+            
+            let list = [];
+
+            if(member.steamId != null){
+                list.push({
+                    name:"steam ID:",
+                    value: member.steamId
+                })
+            }
+
+            if(member.epicId != null){
+                list.push({
+                    name:"Epic ID:",
+                    value: member.epicId
+                })
+            }
+
+            if(member.minecraftName != null){
+                list.push({
+                    name:"Minecraft ID:",
+                    value: member.minecraftName
+                })
+            }
+            
+            if(riot.length > 0){
+                let riotAccounts = "";
+                await riot.map((r, index)=>{
+                    if(index == riot.length -1){
+                        riotAccounts += r.riotID
+                    }
+                    else{
+                        riotAccounts += r.riotID+", "
+                    }
+                })
+                list.push({
+                    name:"Riot ID:",
+                    value: riotAccounts,
+                    inline:true
+                })
+            }
+
+            // let member = await guild.members.fetch(id);
+            let memberName = (memberGuild.nickname == null) ? memberGuild.user.globalName : memberGuild.nickname;
+
+
+            const embed = new EmbedBuilder()
+                .setTitle(`El perfil de ${memberName}`)
+                // .setDescription("list of all commands")
+                .setColor(color)
+                .addFields(
+                    list
+                )
+            await msg.reply({
+                embeds: [embed]
+            });
+
+            msg.delete();
+
         } catch (error) {
             await msg.reply("Necesitas etiquetar a un amigo o usuario del servidor");
         }
