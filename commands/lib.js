@@ -415,7 +415,7 @@ class LowLevelCommand {
             if (member.length == 0) {
                 member = memberGuild;
             }
-            
+
             let list = [];
 
             if(member.steamId != null){
@@ -474,7 +474,7 @@ class LowLevelCommand {
             msg.delete();
 
         } catch (error) {
-            await msg.reply("Necesitas etiquetar a un amigo o usuario del servidor");
+            await msg.reply("Hubo un error algo has hecho mal");
         }
     }
 
