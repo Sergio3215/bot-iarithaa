@@ -433,6 +433,56 @@ class LowLevelCommand {
             await msg.reply("Necesitas poner un id de Steam");
         }
     }
+    
+    async EpicID(client, msg) {
+        try {
+            let memberID = msg.author.id;
+            let profile = await _profile.GetById(memberID);
+            let messageText = "";
+
+            const guild = await client.guilds.cache.get(msg.guild.id);
+            let member = await guild.members.fetch(msg.author.id);
+
+            profile[0].epicId = msg.content.split("!epic")[1].trim();
+            _profile.Update(msg, member, profile[0]);
+            messageText = `Se ha agregado la cuenta de Epic exitosamente`
+
+            await msg.reply({
+                content: messageText
+            });
+            
+            msg.delete();
+
+        } catch (error) {
+            // console.error(error);
+            await msg.reply("Necesitas poner un id de Epic");
+        }
+    }
+
+    async Minecraft(client, msg) {
+        try {
+            let memberID = msg.author.id;
+            let profile = await _profile.GetById(memberID);
+            let messageText = "";
+
+            const guild = await client.guilds.cache.get(msg.guild.id);
+            let member = await guild.members.fetch(msg.author.id);
+
+            profile[0].epicId = msg.content.split("!minecraft")[1].trim();
+            _profile.Update(msg, member, profile[0]);
+            messageText = `Se ha agregado la cuenta de Minecraft exitosamente`;
+
+            await msg.reply({
+                content: messageText
+            });
+            
+            msg.delete();
+
+        } catch (error) {
+            // console.error(error);
+            await msg.reply("Necesitas poner un id de Minecraft");
+        }
+    }
 
     async Perfil(client, msg) {
         try {

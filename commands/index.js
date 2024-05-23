@@ -39,7 +39,10 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         { name: '!pareja', value: "Te dice que pareja vas a tener :D" },
         { name: '!perfil', value: "Puedes ver tu propio perfil, o ver el perfil de alguien \nPor ejemplo: !perfil <name> o !perfil" },
         { name: '!riot add', value: "Agregas un id de Riot (Podes tener varios). \nPor ejemplo: !riot add <name>" },
-        { name: '!riot remove', value: "Borras un id de Riot.\nPor ejemplo: !riot remove <name>" }
+        { name: '!riot remove', value: "Borras un id de Riot.\nPor ejemplo: !riot remove <name>" },
+        { name: '!steam', value: "Agregas un id de Steam (Podes tener varios). \nPor ejemplo: !steam <name>" },
+        { name: '!epic', value: "Agregas un id de Epic (Podes tener varios). \nPor ejemplo: !epic <name>" },
+        { name: '!minecraft', value: "Agregas un id de Minecraft (Podes tener varios). \nPor ejemplo: !minecraft <name>" }
     ];
 
     let arrTemp = comandos_helper;
@@ -104,6 +107,14 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     
     if (msg.content.toLowerCase().includes("!steam")) {
         _lowLevelCommand.SteamID(client, msg);
+    }
+
+    if (msg.content.toLowerCase().includes("!epic")) {
+        _lowLevelCommand.EpicID(client, msg);
+    }
+    
+    if (msg.content.toLowerCase().includes("!minecraft")) {
+        _lowLevelCommand.Minecraft(client, msg);
     }
 
     if (msg.content.toLowerCase().includes("!perfil")) {
