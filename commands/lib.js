@@ -484,7 +484,7 @@ class LowLevelCommand {
                         riotAccounts += r.riotID
                     }
                     else {
-                        riotAccounts += r.riotID + ", \n"
+                        riotAccounts += r.riotID + "\n"
                     }
                 })
                 list.push({
