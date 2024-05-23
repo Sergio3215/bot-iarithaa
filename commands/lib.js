@@ -454,6 +454,7 @@ class LowLevelCommand {
             }
 
             let list = [];
+            console.log(member)
 
             if (member.steamId != null) {
                 list.push({
