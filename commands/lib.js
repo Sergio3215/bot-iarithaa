@@ -416,7 +416,7 @@ class LowLevelCommand {
             const guild = await client.guilds.cache.get(msg.guild.id);
             let member = await guild.members.fetch(msg.author.id);
 
-            profile[0].steamId = msg.content.split("add")[1].trim();
+            profile[0].steamId = msg.content.split("!steam")[1].trim();
             _profile.Update(msg, member, profile[0]);
             messageText = `Se ha agregado la cuenta de Steam exitosamente`
 
@@ -479,7 +479,7 @@ class LowLevelCommand {
                         riotAccounts += r.riotID
                     }
                     else {
-                        riotAccounts += r.riotID + ", "
+                        riotAccounts += r.riotID + ", \n"
                     }
                 })
                 list.push({
