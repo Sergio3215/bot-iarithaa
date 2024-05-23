@@ -1,3 +1,4 @@
+const { colors } = require('../../../propio/yourSecret/react_modules/babel.js');
 const { Profile, Riot } = require('../db/query.js');
 const { Client, GatewayIntentBits, EmbedBuilder, Colors } = require('discord.js');
 
@@ -116,6 +117,17 @@ class HightLevelCommand {
         } catch (error) {
             msg.reply("Hubo un error. Consulte con ela lista de comandos !comandos")
             console.log(error)
+        }
+    }
+
+    async CrearRole(client, msg) {
+
+        try {
+            let nameRole = msg.content.split("!crearrole")[1].trim();
+            await client.guilds.cache.get(msg.guild.id).roles.create({ name: nameRole, Permissions: [], colors:"blue"});
+            msg.reply(`El rol ${nameRole} fue creado con exito`);
+        } catch (error) {
+            msg.reply(`El rol no se pudo crear`);
         }
     }
 }
@@ -417,41 +429,41 @@ class LowLevelCommand {
 
             let list = [];
 
-            if(member.steamId != null){
+            if (member.steamId != null) {
                 list.push({
-                    name:"steam ID:",
+                    name: "steam ID:",
                     value: member.steamId
                 })
             }
 
-            if(member.epicId != null){
+            if (member.epicId != null) {
                 list.push({
-                    name:"Epic ID:",
+                    name: "Epic ID:",
                     value: member.epicId
                 })
             }
 
-            if(member.minecraftName != null){
+            if (member.minecraftName != null) {
                 list.push({
-                    name:"Minecraft ID:",
+                    name: "Minecraft ID:",
                     value: member.minecraftName
                 })
             }
-            
-            if(riot.length > 0){
+
+            if (riot.length > 0) {
                 let riotAccounts = "";
-                await riot.map((r, index)=>{
-                    if(index == riot.length -1){
+                await riot.map((r, index) => {
+                    if (index == riot.length - 1) {
                         riotAccounts += r.riotID
                     }
-                    else{
-                        riotAccounts += r.riotID+", "
+                    else {
+                        riotAccounts += r.riotID + ", "
                     }
                 })
                 list.push({
-                    name:"Riot ID:",
+                    name: "Riot ID:",
                     value: riotAccounts,
-                    inline:true
+                    inline: true
                 })
             }
 

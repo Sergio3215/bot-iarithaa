@@ -11,6 +11,7 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     try {
 
         const guild = await client.guilds.cache.get(msg.guild.id);
+        
         let member = await guild.members.fetch(msg.author.id);
         //member.nickname
         const user = await _profile.GetById(msg.author.id);
@@ -130,6 +131,7 @@ function commandsAdmin(comandos_helper) {
         { name: '!unrole', value: "Puedes deseleccionar los roles a usuarios etiquetados.\nPor ejemplo: !unrole <'Name Role'> <'name user'> <'name user'>.\nSe puede usar varios users" },
         { name: '!asignarrol', value: "se asignara un rol especificado a todos los usuarios. \nPor ejemplo: !asignarrol <'Name Role'>" },
         { name: '!desasignarrol', value: "Puedes deseleccionar los roles a todos los usuarios.\nPor ejemplo: !desasignarrol <'Name Role'>" },
+        { name: '!crearrole', value: "Puedes crear un rol.\nPor ejemplo: !crearrol <'Name Role'>" },
         { name: ' ', value: "-----------------------------" },
         { name: 'Comando de Normal', value: " " },
         { name: ' ', value: "-----------------------------" },
@@ -158,6 +160,10 @@ async function ActionCustom(client, msg) {
 
     if (message.toLowerCase() == "!unrole") {
         _hightRole.Unrole(client, msg);
+    }
+
+    if (message.toLowerCase() == "!crearrole") {
+        _hightRole.CrearRole(client, msg);
     }
 }
 

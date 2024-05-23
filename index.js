@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, EmbedBuilder, Colors } = require('discord.js');
+const { Client, GatewayIntentBits, EmbedBuilder, Colors, Permissions } = require('discord.js');
 require('dotenv').config();
 
 const { ManagerRoles } = require('./commands/index.js');
