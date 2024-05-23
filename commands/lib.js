@@ -401,6 +401,8 @@ class LowLevelCommand {
                     content: `No se ha utilizado bien el comando`
                 });
             }
+            
+            msg.delete();
 
         } catch (error) {
             await msg.reply("Necesitas poner un id de Riot");
@@ -423,6 +425,8 @@ class LowLevelCommand {
             await msg.reply({
                 content: messageText
             });
+            
+            msg.delete();
 
         } catch (error) {
             // console.error(error);
