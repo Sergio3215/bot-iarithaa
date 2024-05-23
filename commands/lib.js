@@ -454,23 +454,22 @@ class LowLevelCommand {
             }
 
             let list = [];
-            console.log(member)
 
-            if (member.steamId != null) {
+            if (member[0].steamId != null) {
                 list.push({
                     name: "steam ID:",
                     value: member.steamId
                 })
             }
 
-            if (member.epicId != null) {
+            if (member[0].epicId != null) {
                 list.push({
                     name: "Epic ID:",
                     value: member.epicId
                 })
             }
 
-            if (member.minecraftName != null) {
+            if (member[0].minecraftName != null) {
                 list.push({
                     name: "Minecraft ID:",
                     value: member.minecraftName
