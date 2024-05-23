@@ -1,4 +1,3 @@
-const { valueToNode } = require('../../../propio/yourSecret/react_modules/babel.js');
 const { Profile, Riot } = require('../db/query.js');
 const { Client, GatewayIntentBits, EmbedBuilder, Colors } = require('discord.js');
 
