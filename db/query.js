@@ -12,8 +12,15 @@ class Profile {
             data: {
                 userId: msg.author.id,
                 userGlobalName: msg.author.globalName,
-                userNickName: member.nickname
+                userNickName: member.nickname,
+                duo: null,
+                pareja: null,
+                messageCount: null,
+                steamId: null,
+                epicId: null,
+                minecraftName: null
             }
+            
         });
     }
 
@@ -29,15 +36,18 @@ class Profile {
         });
     }
 
-    async Update() {
+    async Update(msg, member, options) {
         await prisma.profile.update({
             where: {
-                userId: msg.author.id
+                id: options.id
             },
             data: {
                 userId: msg.author.id,
                 userGlobalName: msg.author.globalName,
-                userNickName: member.nickname
+                userNickName: member.nickname,
+                steamId: options.steamId,
+                epicId: options.epicId,
+                minecraftName: options.minecraftName
             }
         });
     }

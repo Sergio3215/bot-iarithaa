@@ -17,7 +17,7 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         const user = await _profile.GetById(msg.author.id);
 
         if (user.length == 0 && msg.author.id != "1234739925266600019") {
-            _profile.Create(msg, member);
+           await _profile.Create(msg, member);
         }
 
     }
@@ -100,6 +100,10 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
 
     if (msg.content.toLowerCase().includes("!riot")) {
         _lowLevelCommand.RiotID(msg);
+    }
+    
+    if (msg.content.toLowerCase().includes("!steam")) {
+        _lowLevelCommand.SteamID(client, msg);
     }
 
     if (msg.content.toLowerCase().includes("!perfil")) {

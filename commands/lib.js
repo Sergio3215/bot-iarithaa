@@ -1,4 +1,3 @@
-const { colors } = require('../../../propio/yourSecret/react_modules/babel.js');
 const { Profile, Riot } = require('../db/query.js');
 const { Client, GatewayIntentBits, EmbedBuilder, Colors } = require('discord.js');
 
@@ -124,7 +123,7 @@ class HightLevelCommand {
 
         try {
             let nameRole = msg.content.split("!crearrole")[1].trim();
-            await client.guilds.cache.get(msg.guild.id).roles.create({ name: nameRole, Permissions: [], colors:"blue"});
+            await client.guilds.cache.get(msg.guild.id).roles.create({ name: nameRole, Permissions: [], colors: "blue" });
             msg.reply(`El rol ${nameRole} fue creado con exito`);
         } catch (error) {
             msg.reply(`El rol no se pudo crear`);
@@ -405,6 +404,29 @@ class LowLevelCommand {
 
         } catch (error) {
             await msg.reply("Necesitas poner un id de Riot");
+        }
+    }
+
+    async SteamID(client, msg) {
+        try {
+            let memberID = msg.author.id;
+            let profile = await _profile.GetById(memberID);
+            let messageText = "";
+
+            const guild = await client.guilds.cache.get(msg.guild.id);
+            let member = await guild.members.fetch(msg.author.id);
+
+            profile[0].steamId = msg.content.split("add")[1].trim();
+            _profile.Update(msg, member, profile[0]);
+            messageText = `Se ha agregado la cuenta de Steam exitosamente`
+
+            await msg.reply({
+                content: messageText
+            });
+
+        } catch (error) {
+            // console.error(error);
+            await msg.reply("Necesitas poner un id de Steam");
         }
     }
 
