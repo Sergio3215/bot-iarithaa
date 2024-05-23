@@ -468,7 +468,7 @@ class LowLevelCommand {
             const guild = await client.guilds.cache.get(msg.guild.id);
             let member = await guild.members.fetch(msg.author.id);
 
-            profile[0].epicId = msg.content.split("!minecraft")[1].trim();
+            profile[0].minecraftName = msg.content.split("!minecraft")[1].trim();
             _profile.Update(msg, member, profile[0]);
             messageText = `Se ha agregado la cuenta de Minecraft exitosamente`;
 
