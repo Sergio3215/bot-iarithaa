@@ -15,8 +15,8 @@ datasource db {
 
 model Profile {
   id             String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId         String
-  userGlobalName String
+  userId         String?
+  userGlobalName String?
   userNickName   String?
   duo            String?
   pareja         String?

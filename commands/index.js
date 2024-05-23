@@ -56,7 +56,7 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     }
 
 
-    if (msg.content === '!comandos') {
+    if (msg.content.toLowerCase() === '!comandos') {
         const embed = new EmbedBuilder()
             .setTitle("Lista de Comandos")
             // .setDescription("list of all commands")
