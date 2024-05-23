@@ -454,25 +454,26 @@ class LowLevelCommand {
             }
 
             let list = [];
+            console.log(member[0].epicId)
 
             if (member[0].steamId != null) {
                 list.push({
-                    name: "steam ID:",
-                    value: member.steamId
+                    name: "Steam ID:",
+                    value: member[0].steamId
                 })
             }
 
             if (member[0].epicId != null) {
                 list.push({
                     name: "Epic ID:",
-                    value: member.epicId
+                    value: member[0].epicId
                 })
             }
 
             if (member[0].minecraftName != null) {
                 list.push({
                     name: "Minecraft ID:",
-                    value: member.minecraftName
+                    value: member[0].minecraftName
                 })
             }
 
@@ -511,6 +512,7 @@ class LowLevelCommand {
             msg.delete();
 
         } catch (error) {
+            console.log(error)
             await msg.reply("Hubo un error algo has hecho mal");
         }
     }
