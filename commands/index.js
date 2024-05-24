@@ -40,9 +40,9 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         { name: '!perfil', value: "Puedes ver tu propio perfil, o ver el perfil de alguien \nPor ejemplo: !perfil <name> o !perfil" },
         { name: '!riot add', value: "Agregas un id de Riot (Podes tener varios). \nPor ejemplo: !riot add <name>" },
         { name: '!riot remove', value: "Borras un id de Riot.\nPor ejemplo: !riot remove <name>" },
-        { name: '!steam', value: "Agregas un id de Steam (Podes tener varios). \nPor ejemplo: !steam <name>" },
-        { name: '!epic', value: "Agregas un id de Epic (Podes tener varios). \nPor ejemplo: !epic <name>" },
-        { name: '!minecraft', value: "Agregas un id de Minecraft (Podes tener varios). \nPor ejemplo: !minecraft <name>" }
+        { name: '!steam', value: "Agregas un id de Steam. \nPor ejemplo: !steam <name>" },
+        { name: '!epic', value: "Agregas un id de Epic. \nPor ejemplo: !epic <name>" },
+        { name: '!minecraft', value: "Agregas un id de Minecraft. \nPor ejemplo: !minecraft <name>" }
     ];
 
     let arrTemp = comandos_helper;
@@ -60,7 +60,7 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     }
 
 
-    if (msg.content.toLowerCase() === '!comandos') {
+    if (msg.content.toLowerCase() === '!comandos' || msg.content.toLowerCase() === '!help') {
         const embed = new EmbedBuilder()
             .setTitle("Lista de Comandos")
             // .setDescription("list of all commands")
