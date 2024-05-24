@@ -1,5 +1,5 @@
 const { Profile, Riot } = require('../db/query.js');
-const { Client, GatewayIntentBits, EmbedBuilder, Colors } = require('discord.js');
+const { EmbedBuilder, Colors } = require('discord.js');
 
 const _profile = new Profile();
 const _riot = new Riot();
@@ -499,12 +499,13 @@ class LowLevelCommand {
             let memberGuild = await guild.members.fetch(id);
             let riot = await _riot.GetById(id);
 
+            let linkImage = `https://cdn.discordapp.com/avatars/${id}/${memberGuild.user.avatar}.webp?size=1280`;
+
             if (member.length == 0) {
                 member = memberGuild;
             }
 
             let list = [];
-            console.log(member[0].epicId)
 
             if (member[0].steamId != null) {
                 list.push({
@@ -552,6 +553,7 @@ class LowLevelCommand {
                 .setTitle(`El perfil de ${memberName}`)
                 // .setDescription("list of all commands")
                 .setColor(color)
+                .setThumbnail(linkImage)
                 .addFields(
                     list
                 )
