@@ -180,5 +180,9 @@ async function ActionCustom(client, msg) {
     if (message.toLowerCase() == "!crearrole") {
         _hightRole.CrearRole(client, msg);
     }
+    
+    if (message.toLowerCase() == "!test") {
+        _hightRole.Test(client, msg);
+    }
 }
 

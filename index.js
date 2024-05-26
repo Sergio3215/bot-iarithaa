@@ -91,6 +91,22 @@ client.on('messageCreate', async (msg) => {
 
     }
 });
+
+client.on('interactionCreate', (interaction)=>{
+    console.log(interaction);
+
+    let idUser = interaction.customId.split(" ")[1] == interaction.user.id;
+    console.log(interaction.customId, interaction.user.id)
+
+    if(idUser){
+        interaction.reply("it is correct");
+    }
+    else{
+        interaction.reply("it is not correct");
+    }
+
+})
+
 client.on('guildMemberAdd', async (member) => {
     //    member.roles.add("1092199143902040144");
     // console.log(member)

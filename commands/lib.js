@@ -1,5 +1,5 @@
 const { Profile, Riot } = require('../db/query.js');
-const { EmbedBuilder, Colors } = require('discord.js');
+const { EmbedBuilder, Colors, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
 
 const _profile = new Profile();
 const _riot = new Riot();
@@ -127,6 +127,34 @@ class HightLevelCommand {
             msg.reply(`El rol ${nameRole} fue creado con exito`);
         } catch (error) {
             msg.reply(`El rol no se pudo crear`);
+        }
+    }
+    
+    async Test(client, msg) {
+
+        try {
+
+            let id="";
+
+            if(msg.content.includes("<@")){
+                id=msg.content.split("<@")[1].trim().split(">")[0].trim();
+            }
+
+            let button = new ButtonBuilder()
+            .setCustomId('test '+id)
+            .setLabel('Test')
+            .setStyle(ButtonStyle.Secondary);
+
+            let row = new ActionRowBuilder()
+            .addComponents(button);
+
+            msg.reply({
+                content:"Test de Boton",
+                components:[row]
+            })
+
+        } catch (error) {
+            console.error(error);
         }
     }
 }
