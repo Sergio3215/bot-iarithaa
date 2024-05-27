@@ -535,6 +535,13 @@ class LowLevelCommand {
             }
 
             let list = [];
+            
+            if (member[0].duo != null) {
+                list.push({
+                    name: "Duo de videojuego:",
+                    value: member[0].duo
+                })
+            }
 
             if (member[0].steamId != null) {
                 list.push({
