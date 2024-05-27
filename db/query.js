@@ -47,7 +47,8 @@ class Profile {
                 userNickName: member.nickname,
                 steamId: options.steamId,
                 epicId: options.epicId,
-                minecraftName: options.minecraftName
+                minecraftName: options.minecraftName,
+                duo: options.duo
             }
         });
     }

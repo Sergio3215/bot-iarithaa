@@ -129,34 +129,35 @@ class HightLevelCommand {
             msg.reply(`El rol no se pudo crear`);
         }
     }
-    
+
     async Test(client, msg) {
 
         try {
 
-            let id="";
+            let id = "";
 
-            if(msg.content.includes("<@")){
-                id=msg.content.split("<@")[1].trim().split(">")[0].trim();
+            if (msg.content.includes("<@")) {
+                id = msg.content.split("<@")[1].trim().split(">")[0].trim();
             }
 
             let button = new ButtonBuilder()
-            .setCustomId('test '+id)
-            .setLabel('Test')
-            .setStyle(ButtonStyle.Secondary);
+                .setCustomId('test ' + id)
+                .setLabel('Test')
+                .setStyle(ButtonStyle.Secondary);
 
             let row = new ActionRowBuilder()
-            .addComponents(button);
+                .addComponents(button);
 
             msg.reply({
-                content:"Test de Boton",
-                components:[row]
+                content: "Test de Boton",
+                components: [row]
             })
 
         } catch (error) {
             console.error(error);
         }
     }
+
 }
 
 class LowLevelCommand {
@@ -429,7 +430,7 @@ class LowLevelCommand {
                     content: `No se ha utilizado bien el comando`
                 });
             }
-            
+
             msg.delete();
 
         } catch (error) {
@@ -453,7 +454,7 @@ class LowLevelCommand {
             await msg.reply({
                 content: messageText
             });
-            
+
             msg.delete();
 
         } catch (error) {
@@ -461,7 +462,7 @@ class LowLevelCommand {
             await msg.reply("Necesitas poner un id de Steam");
         }
     }
-    
+
     async EpicID(client, msg) {
         try {
             let memberID = msg.author.id;
@@ -478,7 +479,7 @@ class LowLevelCommand {
             await msg.reply({
                 content: messageText
             });
-            
+
             msg.delete();
 
         } catch (error) {
@@ -503,7 +504,7 @@ class LowLevelCommand {
             await msg.reply({
                 content: messageText
             });
-            
+
             msg.delete();
 
         } catch (error) {
@@ -614,6 +615,36 @@ class LowLevelCommand {
         return tempArr[oneMember]
     }
 
+    async Duo(client, msg) {
+        try {
+            let id = "";
+
+            if (msg.content.includes("<@")) {
+                id = msg.content.split("<@")[1].trim().split(">")[0].trim();
+            }
+
+            let success = new ButtonBuilder()
+                .setCustomId('duo si ' + id)
+                .setLabel('Acepto')
+                .setStyle(ButtonStyle.Success);
+
+            let cancel = new ButtonBuilder()
+                .setCustomId('duo no ' + id)
+                .setLabel('Rechazo')
+                .setStyle(ButtonStyle.Danger);
+
+            let row = new ActionRowBuilder()
+                .addComponents(success, cancel);
+
+            msg.reply({
+                content: `<@${msg.author.id}> esta pidiendote ser duo de <@${id}> ¿Deseas aceptar o rechazar?`,
+                components: [row]
+            });
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
 }
 
 module.exports = {

@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits, EmbedBuilder, Colors, Permissions } = require
 require('dotenv').config();
 
 const { ManagerRoles } = require('./commands/index.js');
+const { ManageInteraction } = require('./interations/index.js');
 
 const token = process.env.token;
 
@@ -93,18 +94,7 @@ client.on('messageCreate', async (msg) => {
 });
 
 client.on('interactionCreate', (interaction)=>{
-    console.log(interaction);
-
-    let idUser = interaction.customId.split(" ")[1] == interaction.user.id;
-    console.log(interaction.customId, interaction.user.id)
-
-    if(idUser){
-        interaction.reply("it is correct");
-    }
-    else{
-        interaction.reply("it is not correct");
-    }
-
+    ManageInteraction(interaction);
 })
 
 client.on('guildMemberAdd', async (member) => {

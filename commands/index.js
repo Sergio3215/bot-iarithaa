@@ -11,13 +11,13 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     try {
 
         const guild = await client.guilds.cache.get(msg.guild.id);
-        
+
         let member = await guild.members.fetch(msg.author.id);
         //member.nickname
         const user = await _profile.GetById(msg.author.id);
 
         if (user.length == 0 && msg.author.id != "1234739925266600019") {
-           await _profile.Create(msg, member);
+            await _profile.Create(msg, member);
         }
 
     }
@@ -42,7 +42,8 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         { name: '!riot remove', value: "Borras un id de Riot.\nPor ejemplo: !riot remove <name>" },
         { name: '!steam', value: "Agregas un id de Steam. \nPor ejemplo: !steam <name>" },
         { name: '!epic', value: "Agregas un id de Epic. \nPor ejemplo: !epic <name>" },
-        { name: '!minecraft', value: "Agregas un id de Minecraft. \nPor ejemplo: !minecraft <name>" }
+        { name: '!minecraft', value: "Agregas un id de Minecraft. \nPor ejemplo: !minecraft <name>" },
+        { name: '!duo', value: "Agregas un duo para videojuegos. \nPor ejemplo: !duo <name>" }
     ];
 
     let arrTemp = comandos_helper;
@@ -104,7 +105,7 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     if (msg.content.toLowerCase().includes("!riot")) {
         _lowLevelCommand.RiotID(msg);
     }
-    
+
     if (msg.content.toLowerCase().includes("!steam")) {
         _lowLevelCommand.SteamID(client, msg);
     }
@@ -112,13 +113,17 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     if (msg.content.toLowerCase().includes("!epic")) {
         _lowLevelCommand.EpicID(client, msg);
     }
-    
+
     if (msg.content.toLowerCase().includes("!minecraft")) {
         _lowLevelCommand.Minecraft(client, msg);
     }
 
     if (msg.content.toLowerCase().includes("!perfil")) {
         _lowLevelCommand.Perfil(client, msg);
+    }
+
+    if (msg.content.toLowerCase().includes("!duo")) {
+        _lowLevelCommand.Duo(client, msg);
     }
 
     if (admin) {
@@ -131,11 +136,6 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
         ActionCustom(client, msg)
     }
 }
-
-module.exports = {
-    ManagerRoles
-}
-
 
 function commandsAdmin(comandos_helper) {
     let commands = [
@@ -180,9 +180,13 @@ async function ActionCustom(client, msg) {
     if (message.toLowerCase() == "!crearrole") {
         _hightRole.CrearRole(client, msg);
     }
-    
-    if (message.toLowerCase() == "!test") {
+
+    if (msg.content.toLowerCase().includes("!test")) {
         _hightRole.Test(client, msg);
     }
+
 }
 
+module.exports = {
+    ManagerRoles
+}
