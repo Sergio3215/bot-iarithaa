@@ -40,7 +40,7 @@ class LowInteraction {
         if (interaction.customId.includes("si")) {
             let idUser = interaction.customId.split("si ")[1].trim() == interaction.user.id.trim();
             if (idUser) {
-                interaction.reply(`<@${idsUsers[1]}> ha aceptado la solicitud de emparejamiento de duo de <@${idsUsers[0]}>`);
+                interaction.reply(`<@${idsUsers[1]}> ha aceptado la solicitud de duo de <@${idsUsers[0]}>`);
                 idsUsers.map(async (id, index) => {
                     let member = await _profile.GetById(id);
                     // console.log(member[0])
