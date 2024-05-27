@@ -72,7 +72,7 @@ class LowInteraction {
         if (interaction.customId.includes("no")) {
             let idUser = interaction.customId.split("no ")[1].trim() == interaction.user.id.trim();
             if (idUser) {
-                interaction.reply(`<@${idsUsers[1]}> ha rechazado la solicitud de emparejamiento de duo de <@${ids[0]}>`);
+                interaction.reply(`<@${idsUsers[1]}> ha rechazado la solicitud de emparejamiento de duo de <@${idsUsers[0]}>`);
                 interaction.message.delete();
             }
             else {

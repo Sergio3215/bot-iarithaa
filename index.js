@@ -1,7 +1,7 @@
 const { Client, GatewayIntentBits, EmbedBuilder, Colors, Permissions } = require('discord.js');
 require('dotenv').config();
 
-const { ManagerRoles } = require('./commands/index.js');
+const { ManagerRoles, CreateProfile } = require('./commands/index.js');
 const { ManageInteraction } = require('./interations/index.js');
 
 const token = process.env.token;
@@ -100,6 +100,7 @@ client.on('interactionCreate', (interaction)=>{
 client.on('guildMemberAdd', async (member) => {
     //    member.roles.add("1092199143902040144");
     // console.log(member)
+    // CreateProfile(client, msg)
     if (member.guild.id == guildId) {
         member.roles.add(memberRol);
         // console.log("se asigno un rol");

@@ -5,25 +5,9 @@ const _hightRole = new HightLevelCommand();
 const _lowLevelCommand = new LowLevelCommand();
 const _profile = new Profile();
 
-
 async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, moderation, helper) {
 
-    try {
-
-        const guild = await client.guilds.cache.get(msg.guild.id);
-
-        let member = await guild.members.fetch(msg.author.id);
-        //member.nickname
-        const user = await _profile.GetById(msg.author.id);
-
-        if (user.length == 0 && msg.author.id != "1234739925266600019") {
-            await _profile.Create(msg, member);
-        }
-
-    }
-    catch (error) {
-        console.log(error);
-    }
+    CreateProfile(client, msg);
 
     let admin = administrator,
         mod = moderation,
@@ -137,6 +121,24 @@ async function ManagerRoles(client, msg, EmbedBuilder, Colors, administrator, mo
     }
 }
 
+async function CreateProfile(client, msg){
+    try {
+        const guild = await client.guilds.cache.get(msg.guild.id);
+
+        let member = await guild.members.fetch(msg.author.id);
+        //member.nickname
+        const user = await _profile.GetById(msg.author.id);
+
+        if (user.length == 0 && msg.author.id != "1234739925266600019") {
+            await _profile.Create(msg, member);
+        }
+
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
 function commandsAdmin(comandos_helper) {
     let commands = [
         { name: ' ', value: "-----------------------------" },
@@ -188,5 +190,6 @@ async function ActionCustom(client, msg) {
 }
 
 module.exports = {
-    ManagerRoles
+    ManagerRoles,
+    CreateProfile
 }
