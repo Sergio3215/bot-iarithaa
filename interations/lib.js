@@ -45,10 +45,10 @@ class LowInteraction {
                     let member = await _profile.GetById(id);
                     // console.log(member[0])
                     if (index == 0) {
-                        member[0].duo = idsUsers[0];
+                        member[0].duo = idsUsers[1];
                     }
                     else {
-                        member[0].duo = idsUsers[1];
+                        member[0].duo = idsUsers[0];
                     }
                     let msg = {
                         author: {
