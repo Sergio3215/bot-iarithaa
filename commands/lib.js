@@ -535,11 +535,13 @@ class LowLevelCommand {
             }
 
             let list = [];
-            
+
             if (member[0].duo != null) {
+                let duo = await _profile.GetById(member[0].duo);
+                console.log(duo);
                 list.push({
                     name: "Duo de videojuego:",
-                    value: member[0].duo
+                    value: (duo[0].userNickName == null)? duo[0].userGlobalName : duo[0].userNickName
                 })
             }
 
